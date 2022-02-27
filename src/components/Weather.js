@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import '../styling/weather.css';
 import axios from 'axios';
-//http://api.weatherapi.com/v1/current.json?key=<YOUR_API_KEY>&q=London
 
 export default function Weather() {
     const [weather, setWeather] = useState();
@@ -14,6 +14,15 @@ export default function Weather() {
     }, [])
 
   return (
-    <div><h1>{`${weather?.location.name}`}</h1></div>
+    <>
+      {console.log(weather)}
+      <div className='weather-container'>
+        <div className='icon-temp'>
+          <img src={`${weather?.current.condition.icon}`} alt='' />
+          <h1>{`${weather?.current.temp_f} °F`}</h1>
+        </div>
+        <h1>{`${weather?.location.name}, ${weather?.location.region}`}</h1>
+      </div>
+    </>
   )
 }
